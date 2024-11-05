@@ -1,4 +1,4 @@
-var _key_up = keyboard_check(ord("W")); //cima
+ var _key_up = keyboard_check(ord("W")); //cima
 var _key_down = keyboard_check(ord("S")); //Abaixa
 var _key_left = keyboard_check(ord("A")); //Esquerda
 var _key_right = keyboard_check(ord("D")); //Direita	
@@ -74,22 +74,23 @@ if _key_jump and jumps > 0 { //verifica se o player pode pular
 #region Atirar
 
 var _xx = x + (32 *sign(image_xscale))
-var _yy = y - 16 //posição da bala em relação ao jogador
+var _yy = y - 8 //posição da bala em relação ao jogador
 
 if _key_shoot and global.player_state == "free"{
 	if hspd != 0 {global.player_state = "run_shoot"}
 	else {global.player_state = "idle_shoot"}
 	
-	var _dir;
+	/*if global.player_state == "idle_shoot"{
+		sprite_index = spr_player_idle_shoot
+			if image_index > image_number -1 {
+				global.player_state = "free"
+			}
+		}*/
 	
-	if image_xscale == 1 {
-        _dir = 0; // Direção para a direita
-    } else {
-        _dir = 1; // Direção para a esquerda
-    }	
+	var _spd = 10 * sign(image_xscale)
+		
 	with (instance_create_layer(_xx,_yy,"Bullets",obj_bullet)){
-		speed = 10
-		direction = _dir
+		speed = _spd
 	}		
 	global.player_state = "free"
 }
@@ -120,9 +121,16 @@ if global.player_state == "jump"{
 }
 
 if vspd > 0{
-	sprite_index = spr_player_fall
+	global.player_state = "fall"
+	if global.player_state == "fall"{
+		sprite_index = spr_player_fall
+	}
+}else{
+	if place_meeting(x,y+1,obj_wall) and global.player_state == "fall"{
+		global.player_state = "free"
+	}
 }
-	
+
 if hspd == 0 and global.player_state == "free"{	
 	if place_meeting(x,y+1,obj_wall){
 		sprite_index = spr_player_idle
@@ -134,6 +142,5 @@ if hspd != 0 and global.player_state == "free"{
 		sprite_index = spr_player_run
 	}	
 }
-
 
 #endregion

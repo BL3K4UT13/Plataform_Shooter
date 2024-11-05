@@ -19,8 +19,10 @@
   "ResourceOrderSettings": [
     {"name":"spr_wall","order":1,"path":"sprites/spr_wall/spr_wall.yy",},
     {"name":"spr_player_trim","order":3,"path":"sprites/spr_player_trim/spr_player_trim.yy",},
+    {"name":"spr_player_down_shoot","order":8,"path":"sprites/spr_player_down_shoot/spr_player_down_shoot.yy",},
     {"name":"spr_player_run","order":2,"path":"sprites/spr_player_run/spr_player_run.yy",},
     {"name":"obj_bullet","order":4,"path":"objects/obj_bullet/obj_bullet.yy",},
+    {"name":"spr_player_trim_shoot","order":9,"path":"sprites/spr_player_trim_shoot/spr_player_trim_shoot.yy",},
     {"name":"spr_player_fall","order":4,"path":"sprites/spr_player_fall/spr_player_fall.yy",},
     {"name":"obj_control","order":1,"path":"objects/obj_control/obj_control.yy",},
     {"name":"spr_player_idle_shoot","order":6,"path":"sprites/spr_player_idle_shoot/spr_player_idle_shoot.yy",},
